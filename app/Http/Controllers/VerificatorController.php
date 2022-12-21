@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class VerificatorController extends Controller
 {
     public function init(Request $request){
-        return response()->json($request->all());
+        return response()->json([ "serve8" => "Hello there!!" ]);
     }
 
     public function info(Request $request){

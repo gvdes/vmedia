@@ -15,7 +15,7 @@ use App\Http\Controllers\VerificatorController;
 |
 */
 
-Route::get('/', fn() => response("Hello from container"));
+// Route::get('/', fn() => response("Hello from container"));
 
 Route::prefix('verificator')
     ->controller(VerificatorController::class)

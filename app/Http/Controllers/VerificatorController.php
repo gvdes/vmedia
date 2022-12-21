@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class VerificatorController extends Controller
 {
     public function init(Request $request){
-        return response()->json([ "serve8" => "Hello there!!" ]);
+        $count = Product::count();
+        return response()->json([ "serve8" => "Hello there!!", "products"=>$count ]);
     }
 
     public function info(Request $request){

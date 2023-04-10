@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FoldersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VerificatorController;
@@ -22,4 +24,21 @@ Route::prefix('verificator')
     ->group(function(){
         Route::get('init', 'init');
         Route::get('info', 'info');
+    });
+
+Route::prefix('admin')
+    ->group(function(){
+
+        Route::prefix('folders')
+            ->controller(FoldersController::class)
+            ->group(function(){
+                Route::post('/start','start');
+                Route::get('/','list');
+                Route::post('/','create');
+                Route::put('/','rename');
+                Route::delete('/','delete');
+                Route::post('/syncdb','syncdb');
+                Route::put('/moveto','delete');
+        });
+
     });

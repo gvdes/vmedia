@@ -17,7 +17,7 @@ class CorsMidleware
     public function handle(Request $request, Closure $next)
     {
         $headers = [
-            'Access-Control-Allow-Origin'      => '*',
+            'Access-Control-Allow-Origin'      => '192.168.10.189:2202',
             'Access-Control-Allow-Methods'     => 'POST, GET, OPTIONS, PUT, DELETE',
             'Access-Control-Allow-Credentials' => 'true',
             'Access-Control-Max-Age'           => '86400',

@@ -42,3 +42,5 @@ Route::prefix('admin')
         });
 
     });
+
+    Route::group(['middleware' => ['cors']], function () { });

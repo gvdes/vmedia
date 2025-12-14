@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class VerificatorController extends Controller
 {
@@ -18,9 +19,16 @@ class VerificatorController extends Controller
 
         try {
             $product = Product::where("barcode",$tgt)
-                        ->with([ "prices" => fn($p) => $p->with("pricelist") ])
+                        ->with([ "prices" => fn($p) => $p->with("pricelist"),
+                        'category.familia.seccion'
+                         ])
                         ->first();
 
+            $files = Storage::files("vhelpers/Products/$product->id");
+            $product->media = collect($files)->map(fn ($file) => [
+                'type' => str_ends_with($file, '.mp4') ? 'video' : 'image',
+                'url' => Storage::disk('s3')->url($file),
+            ]);
             if($product){
                 return response()->json([ "product"=> $product, "path"=>$path]);
             }else{ return response("$tgt not found!!", 404); }

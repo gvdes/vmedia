@@ -11,4 +11,7 @@ class Product extends Model
     public $timestamps = false;
 
     public function prices(){ return $this->hasMany('App\Models\ProductPrices','_product','id'); }
+    public function category(){
+        return $this->belongsTo('App\Models\ProductCategoriesVA', '_category');
+    }
 }
